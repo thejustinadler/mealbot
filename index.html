@@ -1,6 +1,23 @@
-<html>
-  <body>
-    <div id="jsonData"></div>
-    <script src="script.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mealbot Output</title>
+</head>
+<body>
+  <h1>Mealbot Response</h1>
+  <pre id="jsonData"></pre>
+
+  <script>
+    fetch('https://us-central1-genial-cab-436301-n4.cloudfunctions.net/mealbot')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('jsonData').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        document.getElementById('jsonData').textContent = 'Error fetching data: ' + error;
+      });
+  </script>
+</body>
 </html>
